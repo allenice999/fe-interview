@@ -16,7 +16,19 @@ export default defineConfig({
       { text: "手写代码与场景方案", link: "/coding-challenges" },
       { text: "其他", link: "/misc" },
     ],
-    sidebar: {},
+    sidebar: {
+      "/coding-challenges/": {
+        items: [
+          {
+            text: "场景方案",
+            link: "/coding-challenges",
+            items: [
+              { text: "1. 早高峰秒杀页面渲染", link: "/coding-challenges/早高峰秒杀页面渲染" },
+            ],
+          },
+        ],
+      },
+    },
     docFooter: {
       prev: "上一篇文章",
       next: "下一篇文章",
@@ -36,7 +48,9 @@ export default defineConfig({
     ],
   ],
   cleanUrls: true,
-  rewrites: {},
+  rewrites(id) {
+    return id.replace(/(\d+)-([^/]+\.md)$/, "$2");
+  },
   markdown: {
     config: (md) => {
       const render = md.render;
